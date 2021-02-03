@@ -53,18 +53,18 @@ TOOLCHAIN_DIR = platform.get_package_dir(
 )
 assert os.path.isdir(FRAMEWORK_DIR)
 
-# Arduino framework as a component is not compatible with ESP-IDF >=4.1
-if "arduino" in env.subst("$PIOFRAMEWORK"):
-    ARDUINO_FRAMEWORK_DIR = platform.get_package_dir("framework-arduinoespressif32")
-    # Possible package names in 'package@version' format is not compatible with CMake
-    if "@" in os.path.basename(ARDUINO_FRAMEWORK_DIR):
-        new_path = os.path.join(
-            os.path.dirname(ARDUINO_FRAMEWORK_DIR),
-            os.path.basename(ARDUINO_FRAMEWORK_DIR).replace("@", "-"),
-        )
-        os.rename(ARDUINO_FRAMEWORK_DIR, new_path)
-        ARDUINO_FRAMEWORK_DIR = new_path
-    assert ARDUINO_FRAMEWORK_DIR and os.path.isdir(ARDUINO_FRAMEWORK_DIR)
+# # Arduino framework as a component is not compatible with ESP-IDF >=4.1
+# if "arduino" in env.subst("$PIOFRAMEWORK"):
+#     ARDUINO_FRAMEWORK_DIR = platform.get_package_dir("framework-arduinoespressif32")
+#     # Possible package names in 'package@version' format is not compatible with CMake
+#     if "@" in os.path.basename(ARDUINO_FRAMEWORK_DIR):
+#         new_path = os.path.join(
+#             os.path.dirname(ARDUINO_FRAMEWORK_DIR),
+#             os.path.basename(ARDUINO_FRAMEWORK_DIR).replace("@", "-"),
+#         )
+#         os.rename(ARDUINO_FRAMEWORK_DIR, new_path)
+#         ARDUINO_FRAMEWORK_DIR = new_path
+#     assert ARDUINO_FRAMEWORK_DIR and os.path.isdir(ARDUINO_FRAMEWORK_DIR)
 
 BUILD_DIR = env.subst("$BUILD_DIR")
 CMAKE_API_REPLY_PATH = os.path.join(".cmake", "api", "v1", "reply")
